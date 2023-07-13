@@ -15140,6 +15140,8 @@ then :
     natdynlink=true ;; #(
   riscv*-*-linux*) :
     natdynlink=true ;; #(
+  loongarch*-*-linux*) :
+    natdynlink=true ;; #(
   *) :
      ;;
 esac
@@ -15336,7 +15338,9 @@ fi; system=elf ;; #(
   x86_64-*-cygwin*) :
     arch=amd64; system=cygwin ;; #(
   riscv64-*-linux*) :
-    arch=riscv; model=riscv64; system=linux
+    arch=riscv; model=riscv64; system=linux ;; #(
+  loongarch64-*-linux*) :
+    has_native_backend=yes; arch=loongarch64; system=linux
  ;; #(
   *) :
      ;;
@@ -15585,7 +15589,7 @@ default_aspp="$CC -c"
 case $as_target,$ocaml_cv_cc_vendor in #(
   *-*-linux*,gcc-*) :
     case $as_cpu in #(
-  x86_64|arm*|aarch64*|i[3-6]86|riscv*) :
+  x86_64|arm*|aarch64*|i[3-6]86|riscv*|loongarch*) :
     default_as="${toolpref}as" ;; #(
   *) :
      ;;
@@ -20856,9 +20860,9 @@ cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
   for (key in D) D_is_set[key] = 1
   FS = ""
 }
-/^[\t ]*#[\t ]*(define|undef)[\t ]+$ac_word_re([\t (]|\r?\$)/ {
+/^[\t ]*#[\t ]*(define|undef)[\t ]+$ac_word_re([\t (]|\$)/ {
   line = \$ 0
-  split(line, arg, /[ \r\t]/)
+  split(line, arg, " ")
   if (arg[1] == "#") {
     defundef = arg[2]
     mac1 = arg[3]
