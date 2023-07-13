@@ -528,6 +528,14 @@ partialclean::
 
 beforedepend:: lambda/runtimedef.ml
 
+asmcomp/loongarch64/CSE.ml: asmcomp/riscv/CSE.ml
+	cp $< $@
+asmcomp/loongarch64/reload.ml: asmcomp/riscv/reload.ml
+	cp $< $@
+asmcomp/loongarch64/scheduling.ml: asmcomp/riscv/scheduling.ml
+	cp $< $@
+
+
 # Choose the right machine-dependent files
 
 asmcomp/arch.ml: asmcomp/$(ARCH)/arch.ml
@@ -1031,6 +1039,7 @@ clean::
 	rm -f runtime/domain_state*.inc
 	rm -rf $(DEPDIR)
 	rm -f stdlib/libcamlrun.a stdlib/libcamlrun.lib
+	rm -f asmcomp/loongarch64/CSE.ml asmcomp/loongarch64/reload.ml asmcomp/loongarch64/scheduling.ml
 
 .PHONY: runtimeopt
 runtimeopt: stdlib/libasmrun.$(A)
