@@ -2076,7 +2076,7 @@ AS_IF([$native_compiler],
 
 AS_IF([test x"$enable_frame_pointers" = "xyes"],
   [AS_CASE(["$host,$cc_basename"],
-    [x86_64-*-linux*,gcc*|x86_64-*-linux*,clang*],
+    [x86_64-*-linux*,gcc*|x86_64-*-linux*,clang*|loongarch64-*-linux*,gcc*],
       [common_cflags="$common_cflags -g  -fno-omit-frame-pointer"
       frame_pointers=true
       AC_DEFINE([WITH_FRAME_POINTERS])
